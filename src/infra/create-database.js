@@ -2,6 +2,8 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const caminhoArq = path.resolve(__dirname, 'database.db')
 const db = new sqlite3.Database(caminhoArq);
+const Dias = new Date()
+const criado = Dias.getDate() + "/" + (Dias.getMonth() + 1) + "/" + Dias.getFullYear()
 
 const TABELA_PEDIDOS = `
     CREATE TABLE IF NOT EXISTS "PEDIDOS" (
@@ -13,15 +15,14 @@ const TABELA_PEDIDOS = `
         "ID_PRODUTO" INTEGER,
         "ID_FORNECEDOR" INTEGER,
         "PRECO_PRODUTO" REAL,
-        "DATA" DATE,
-        "DATA_CRIACAO" DATE
+        "DATA" DATE
     )
 `;
 
 const ADD_DADOS_PEDIDOS = `INSERT INTO PEDIDOS 
-        (ID, ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO, DATA, DATA_CRIACAO)
+        (ID, ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO, DATA)
         VALUES
-        (1, 'STRING FK', 'STRING FK', '00.00', '1', '1', '1', '00.00', 0000-00-00, 0000-00-00)`
+        (1, 'STRING FK', 'STRING FK', '00.00', '1', '1', '1', '00.00', ${criado})`
 
 function criaTabelaPedidos() {
     db.run(TABELA_PEDIDOS, (erro) => {

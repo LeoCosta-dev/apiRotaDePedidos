@@ -1,3 +1,6 @@
+const Dias = new Date()
+const criado = Dias.getDate() + "/" + (Dias.getMonth() + 1) + "/" + Dias.getFullYear()
+
 class PedidosDAO {
 
   static selectPedidos(pedidosDb) {
@@ -19,7 +22,7 @@ class PedidosDAO {
 
   static selectID(id, pedidosDb) {
     return new promise((resolve, reject) => {
-      pedidosDb.all(`SELECT id FROM PEDIDOS WHERE id = ?`, id, (err, rows) => {
+      pedidosDb.all(`SELECT ID FROM PEDIDOS WHERE ID = ?`, [id], (err, rows) => {
         if (err) {
           reject(({ "mensagem": err.message, "error": true }))
         } else {
@@ -33,9 +36,9 @@ class PedidosDAO {
     })
   }
 
-  static async addPedidos(body, pedidosDb, dataCriacao) {
+  static async addPedidos(body, pedidosDb) {
     return new Promise((resolve, reject) => {
-      pedidosDb.run(`INSERT INTO PEDIDOS (ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO, DATA, DATA_CRIACAO) VALUES (?, ?, ?, ?, ?, ?, ?,?, ?)`, [body.ENDERECO_CLIENTE, body.ENDERECO_FORNECEDOR, body.PRECO_FRETE, body.PRAZO_ENTREGA, body.ID_PRODUTO, body.ID_FORNECEDOR, body.PRECO_PRODUTO,body.DATA, dataCriacao], (err) => {
+      pedidosDb.run(`INSERT INTO PEDIDOS (ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO, DATA) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [body.ENDERECO_CLIENTE, body.ENDERECO_FORNECEDOR, body.PRECO_FRETE, body.PRAZO_ENTREGA, body.ID_PRODUTO, body.ID_FORNECEDOR, body.PRECO_PRODUTO, criado], (err) => {
         if (err) {
           reject(({ "mensagem": err.message, "error": true }))
         } else {
