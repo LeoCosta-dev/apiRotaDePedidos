@@ -2,11 +2,11 @@
   "name": "apipedidosprojetofinalmodulo4",
   "version": "1.0.0",
   "description": "api para cadastro de pedidos.",
-  "main": "app.js",
+  "main": "./src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "test": "jest",
+    "start": "node ./src/server.js",
+    "dev": "nodemon"
   },
   "author": "LeoCosta-dev",
   "license": "ISC",
@@ -15,9 +15,11 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "moment": "^2.29.1",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "jest": "^27.3.1",
     "nodemon": "^2.0.15"
   }
 }

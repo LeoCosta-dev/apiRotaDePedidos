@@ -7,4 +7,7 @@ module.exports = (app) => {
     app.get("/pedidos", (req,res) =>{
         Pedidos.lista(req, res)
     })
+    app.post("/pedidos", (req, res) =>{
+        Pedidos.adiciona(req.body, res)
+    })
 }
