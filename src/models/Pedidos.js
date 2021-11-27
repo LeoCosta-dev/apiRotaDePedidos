@@ -1,6 +1,6 @@
 const PedidosDAO = require("../DAO/pedidosDAO");
 const dataBase = require("../infra/conexao");
-const moment = require("moment");
+
 
 class Pedidos{
     static async lista(req, res){
@@ -19,7 +19,7 @@ class Pedidos{
             let idTaAqui = await PedidosDAO.selectID(id, dataBase)
             res.status(200).json(idTaAqui)
         }catch(e){
-            res.status(404).json(e)
+            res.status(500).json(e)
         }
     }
 }

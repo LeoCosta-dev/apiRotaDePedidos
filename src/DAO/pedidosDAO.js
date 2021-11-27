@@ -21,10 +21,10 @@ class PedidosDAO {
   }
 
   static selectID(id, pedidosDb) {
-    return new promise((resolve, reject) => {
-      pedidosDb.all(`SELECT ID FROM PEDIDOS WHERE ID = ?`, [id], (err, rows) => {
+    return new Promise((resolve, reject) => {
+      pedidosDb.get(`SELECT * FROM PEDIDOS WHERE ID = ?`, [id], (err, rows) => {
         if (err) {
-          reject(({ "mensagem": err.message, "error": true }))
+          reject({ "mensagem": err.message, "error": true })
         } else {
           resolve({
             "id": rows,
@@ -49,7 +49,7 @@ class PedidosDAO {
         }
       })
     })
-  } 
+  }
 
   static deletePedidos(id, pedidosDb) {
     return new Promise((resolve, reject) => {
@@ -71,7 +71,7 @@ class PedidosDAO {
     return new Promise((resolve, reject) => {
       pedidosDb.run(`UPDATE PEDIDOS SET (ID, ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO) = (?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?`, [body.id, body.endereco_cliente, body.endereco_fornecedor, body.preco_frete, body.prazo_entrega, body.id_produto, body.id_fornecedor, body.preco_produto], id, (err) => {
         if (err) {
-          reject(({ "mensagem": err.message, "error": true}))
+          reject(({ "mensagem": err.message, "error": true }))
         } else {
           resolve({
             "pedido": id,
@@ -85,3 +85,4 @@ class PedidosDAO {
 }
 
 module.exports = PedidosDAO
+
