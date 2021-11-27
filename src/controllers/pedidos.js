@@ -14,4 +14,12 @@ module.exports = (app) => {
     app.post("/pedidos", (req, res) =>{
         Pedidos.adiciona(req.body, res)
     })
+    app.patch("/pedidos/:id", (req, res) => {
+        let id = parseInt(req.params.id)
+        Pedidos.atualiza(id, req.body, res)
+    })
+    app.delete("/pedidos/:id", (req,res) => {
+        let id = parseInt(req.params.id)
+        Pedidos.deleta(id, res)
+    })
 }

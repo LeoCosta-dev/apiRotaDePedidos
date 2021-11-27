@@ -22,13 +22,13 @@ class PedidosDAO {
 
   static selectID(id, pedidosDb) {
     return new Promise((resolve, reject) => {
-      pedidosDb.get(`SELECT * FROM PEDIDOS WHERE ID = ?`, [id], (err, rows) => {
+      pedidosDb.get(`SELECT * FROM PEDIDOS WHERE ID = ?`, [id], (err, row) => {
         if (err) {
           reject({ "mensagem": err.message, "error": true })
         } else {
           resolve({
-            "id": rows,
-            "count": rows.length,
+            "id": row,
+            "count": row.length,
             "error": false
           })
         }
@@ -69,7 +69,7 @@ class PedidosDAO {
 
   static updatePedidos(id, body, pedidosDb) {
     return new Promise((resolve, reject) => {
-      pedidosDb.run(`UPDATE PEDIDOS SET (ID, ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO) = (?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?`, [body.id, body.endereco_cliente, body.endereco_fornecedor, body.preco_frete, body.prazo_entrega, body.id_produto, body.id_fornecedor, body.preco_produto], id, (err) => {
+      pedidosDb.run(`UPDATE PEDIDOS SET (ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO, DATA) = (?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ${id}`, [body.ENDERECO_CLIENTE, body.ENDERECO_FORNECEDOR, body.PRECO_FRETE, body.PRAZO_ENTREGA, body.ID_PRODUTO, body.ID_FORNECEDOR, body.PRECO_PRODUTO, criado], (err) => {
         if (err) {
           reject(({ "mensagem": err.message, "error": true }))
         } else {
