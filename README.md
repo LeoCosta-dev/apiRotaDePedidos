@@ -102,7 +102,7 @@ Utilizar o método HTTP Delete no caminho <b>"url da api" + /pedidos/:id</b>.
 <br>
 <br>
 
-### OBS.2: Caso apague você apague o arquivo do banco de dados sem querer por algum desconhecido, rode o comando abaixo para criar outro novamente, mas atenção, esse novo banco virar vazio, apenas com a linha 1 contendo o exemplo dos tipos de dados aceitos nele.
+### OBS.2: Caso você apague o arquivo do banco de dados sem querer por algum motivo desconhecido, rode o comando abaixo para criar outro novamente, mas atenção, esse novo banco virar vazio, apenas com a linha 1 contendo o exemplo dos tipos de dados aceitos nele.
 
 ```node
 node ./src/infra/create-database.js
