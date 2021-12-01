@@ -11,7 +11,6 @@ class PedidosDAO {
         } else {
           resolve({
             "pedidos": rows,
-            "count": rows.length,
             "error": false
           })
         }
@@ -28,7 +27,6 @@ class PedidosDAO {
         } else {
           resolve({
             "id": row,
-            "count": row.length,
             "error": false
           })
         }
@@ -59,7 +57,6 @@ class PedidosDAO {
         } else {
           resolve({
             "pedido": id,
-            "count": id.length,
             "error": false
           })
         }
@@ -75,7 +72,6 @@ class PedidosDAO {
         } else {
           resolve({
             "pedido": id,
-            "count": id.length,
             "error": false
           })
         }
