@@ -45,10 +45,3 @@ db.serialize(() => {
     criaTabelaPedidos();
     insereTabelaPedidos();
 })
-
-// module.exports = () => {
-//     db.serialize(() => {
-//         criaTabelaPedidos();
-//         insereTabelaPedidos();
-//     })
-// }
