@@ -4,7 +4,11 @@ const dataBase = require("../infra/conexao");
 
 class Pedidos{
     static async lista(req, res){
-        res.status(200).json(await PedidosDAO.selectPedidos(dataBase))
+        try{
+            res.status(200).json(await PedidosDAO.selectPedidos(dataBase))
+        } catch (e){
+            res.status(404).json(e)
+        }
     }
     static async buscaID(id, res){
         try {

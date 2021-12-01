@@ -36,7 +36,7 @@ class PedidosDAO {
     })
   }
 
-  static async addPedidos(body, pedidosDb) {
+  static addPedidos(body, pedidosDb) {
     return new Promise((resolve, reject) => {
       pedidosDb.run(`INSERT INTO PEDIDOS (ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO, DATA) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [body.ENDERECO_CLIENTE, body.ENDERECO_FORNECEDOR, body.PRECO_FRETE, body.PRAZO_ENTREGA, body.ID_PRODUTO, body.ID_FORNECEDOR, body.PRECO_PRODUTO, criado], (err) => {
         if (err) {
@@ -69,7 +69,7 @@ class PedidosDAO {
 
   static updatePedidos(id, body, pedidosDb) {
     return new Promise((resolve, reject) => {
-      pedidosDb.run(`UPDATE PEDIDOS SET (ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO, DATA) = (?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ${id}`, [body.ENDERECO_CLIENTE, body.ENDERECO_FORNECEDOR, body.PRECO_FRETE, body.PRAZO_ENTREGA, body.ID_PRODUTO, body.ID_FORNECEDOR, body.PRECO_PRODUTO, criado], (err) => {
+      pedidosDb.run(`UPDATE PEDIDOS SET (ENDERECO_CLIENTE, ENDERECO_FORNECEDOR, PRECO_FRETE, PRAZO_ENTREGA, ID_PRODUTO, ID_FORNECEDOR, PRECO_PRODUTO, DATA) = (?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?`, [body.ENDERECO_CLIENTE, body.ENDERECO_FORNECEDOR, body.PRECO_FRETE, body.PRAZO_ENTREGA, body.ID_PRODUTO, body.ID_FORNECEDOR, body.PRECO_PRODUTO, criado, id], (err) => {
         if (err) {
           reject(({ "mensagem": err.message, "error": true }))
         } else {
