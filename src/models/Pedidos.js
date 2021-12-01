@@ -15,7 +15,7 @@ class Pedidos{
             let idTaAqui = await PedidosDAO.selectID(id, dataBase)
             res.status(200).json(idTaAqui)
         }catch(e){
-            res.status(500).json(e)
+            res.status(404).json(e.menssage)
         }
     }
     static async adiciona(body, res) {
